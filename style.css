@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-red: #FF3B30;
+    --primary-yellow: #FFCC00;
+    --sky-blue: #87CEEB;
+    --dark-text: #222222;
+    --white: #FFFFFF;
+    --border-color: #222222;
+    --border-width: 4px;
+    --shadow-solid: 6px 6px 0px var(--border-color);
+    --shadow-hover: 10px 10px 0px var(--border-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+body {
+    background-color: var(--sky-blue);
+    background-image: radial-gradient(#ffffff 10%, transparent 10%);
+    background-size: 30px 30px; /* ลายจุด Polka dot สไตล์การ์ตูน */
+    color: var(--dark-text);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ================= Navbar ================= */
+nav {
+    background-color: var(--white);
+    border-bottom: var(--border-width) solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    text-decoration: none;
+    text-shadow: 2px 2px 0 var(--border-color);
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-text);
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background-color: var(--primary-yellow);
+    border: 2px solid var(--border-color);
+    box-shadow: 3px 3px 0 var(--border-color);
+    transform: translateY(-2px);
+}
+
+/* ================= UI Elements (Comic Style) ================= */
+.comic-card {
+    background: var(--white);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow-solid);
+    transition: all 0.3s ease;
+}
+
+.comic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--dark-text);
+    background-color: var(--primary-yellow);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 15px;
+    box-shadow: var(--shadow-solid);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--primary-red);
+    color: var(--white);
+}
+
+.btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ================= Sections & Layouts ================= */
+section {
+    padding: 60px 0;
+    animation: slideUp 0.8s ease-out;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--white);
+    text-shadow: 3px 3px 0 var(--border-color);
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-red);
+    padding: 5px 20px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 15px;
+    box-shadow: var(--shadow-solid);
+    transform: translateX(-50%) rotate(-2deg);
+}
+
+/* Hero Section */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    color: var(--white);
+    text-shadow: 4px 4px 0 var(--border-color);
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    background: var(--white);
+    padding: 15px;
+    border-radius: 15px;
+    border: 3px solid var(--border-color);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.hero-image-container {
+    position: relative;
+    text-align: center;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 400px;
+    background: var(--primary-yellow);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 50%;
+    padding: 20px;
+    box-shadow: var(--shadow-solid);
+    animation: float 3s ease-in-out infinite alternate;
+}
+
+/* Profile Grid */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+.info-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.info-list li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-bottom: 2px dashed #ccc;
+    padding-bottom: 5px;
+}
+
+.info-list span {
+    color: var(--primary-red);
+}
+
+/* Timeline (Education) */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: var(--border-color);
+    top: 0;
+    bottom: 0;
+    left: 50px;
+    margin-left: -3px;
+    border-radius: 10px;
+}
+
+.timeline-item {
+    padding: 20px 30px 20px 100px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: auto;
+    left: 38px;
+    background-color: var(--primary-yellow);
+    border: 4px solid var(--border-color);
+    top: 25px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Hobby Grid */
+.hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.hobby-card {
+    text-align: center;
+    background: var(--white);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow-solid);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hobby-card:hover {
+    transform: scale(1.05) rotate(2deg);
+    background-color: #FFF9E6;
+}
+
+.hobby-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+/* Contact Grid */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.contact-card {
+    text-align: center;
+    background: var(--white);
+}
+
+/* Footer */
+footer {
+    background-color: var(--border-color);
+    color: var(--white);
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+}
+
+/* Animations */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-20px) rotate(3deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hero, .profile-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .timeline::after {
+        left: 31px;
+    }
+    .timeline-item {
+        padding: 20px 20px 20px 70px;
+    }
+    .timeline-item::after {
+        left: 15px;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+}
