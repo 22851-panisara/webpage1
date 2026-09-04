@@ -20,11 +20,15 @@
 }
 
 body {
-    background-color: var(--sky-blue);
-    background-image: radial-gradient(#ffffff 10%, transparent 10%);
-    background-size: 30px 30px; /* ลายจุด Polka dot สไตล์การ์ตูน */
+    background: linear-gradient(
+        135deg,
+        #FFD93D,
+        #FFF4CC,
+        #FF9F43
+    );
     color: var(--dark-text);
     line-height: 1.6;
+}
 }
 
 .container {
