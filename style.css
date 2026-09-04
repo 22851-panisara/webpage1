@@ -20,14 +20,11 @@
 }
 
 body {
-    background: linear-gradient(
-        135deg,
-        #FFD93D,
-        #FFF4CC,
-        #FF9F43
-    );
-    color: var(--dark-text);
-    line-height: 1.6;
+    background-image: url("shinchan-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 }
 
