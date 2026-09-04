@@ -19,44 +19,21 @@
     font-family: 'Kanit', sans-serif;
 }
 body {
-    /* ไล่สีโทนชินจัง: ฟ้าสว่าง -> เหลือง -> ส้ม -> แดงสด */
-    background: linear-gradient(
-        -45deg, 
-        #4FC3F7, /* สีฟ้าใส */
-        #FFF176, /* สีเหลืองอ่อน */
-        #FFCC00, /* สีเหลืองชินจัง */
-        #FF7043, /* สีส้มเชื่อมโทน */
-        #FF3B30  /* สีแดงชินจัง */
-    );
-    background-size: 400% 400%;
-    animation: glowingBackground 12s ease infinite;
+    /* นำ URL รูปภาพชินจังมาใส่ */
+    background-image: url('https://image.posttoday.com/media/content/2016/06/26/644D3DA733584FD38F852941B153A902.jpg');
+    background-size: cover; /* ให้รูปขยายเต็มหน้าจอ */
+    background-position: center top; /* จัดให้อยู่กึ่งกลาง */
+    background-repeat: no-repeat; /* ไม่ให้รูปซ้ำ */
+    background-attachment: fixed; /* ให้รูปอยู่กับที่เวลาเลื่อนหน้าจอ (Parallax นิดๆ) */
+    
     overflow-x: hidden;
-    position: relative;
     min-height: 100vh;
 }
 
-/* ลายจุด Comic แบบโปร่งแสง ให้ดูมีความเป็นการ์ตูน */
+/* หากมี body::before จากโค้ดก่อนหน้า ให้ซ่อนทิ้งไปเลยครับ */
 body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(rgba(255, 255, 255, 0.35) 15%, transparent 16%),
-        radial-gradient(rgba(255, 255, 255, 0.35) 15%, transparent 16%);
-    background-size: 50px 50px;
-    background-position: 0 0, 25px 25px;
-    z-index: -1;
-    pointer-events: none;
-}
+    display: none; 
 
-/* แอนิเมชันให้สีไหลไปมา */
-@keyframes glowingBackground {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
 /* ================= Navbar ================= */
