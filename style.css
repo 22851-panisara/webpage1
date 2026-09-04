@@ -20,9 +20,45 @@
 }
 
 body {
-    background-color: var(--sky-blue);
-    background-image: radial-gradient(#ffffff 10%, transparent 10%);
-    background-size: 30px 30px;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.7) 0 40px, transparent 41px),
+        radial-gradient(circle at 90% 30%, rgba(255,204,0,.5) 0 80px, transparent 81px),
+        radial-gradient(circle at 50% 90%, rgba(255,59,48,.25) 0 120px, transparent 121px),
+        linear-gradient(
+            135deg,
+            #87CEEB,
+            #B8E8FF,
+            #87CEEB
+        );
+
+    background-size:
+        300px 300px,
+        400px 400px,
+        500px 500px,
+        100% 100%;
+
+    animation: backgroundMove 10s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundMove {
+    from {
+        background-position:
+            0 0,
+            100px 50px,
+            0 100px,
+            0 0;
+    }
+
+    to {
+        background-position:
+            100px 50px,
+            0 100px,
+            100px 0,
+            0 0;
+    }
 }
 
 .container {
