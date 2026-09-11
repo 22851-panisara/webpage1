@@ -19,100 +19,64 @@
     font-family: 'Kanit', sans-serif;
 }
 
-/* ================= 🌈 พื้นหลังฉากเกมแบบเคลื่อนไหว ================= */
+/* ================= 🎮 พื้นหลังเกมเคลื่อนไหวแบบ Pure CSS (ไม่ต้องแก้ HTML) ================= */
 body {
-    background: linear-gradient(-45deg, #70d6ff, #ff70a6, #ff9770, #ffd670, #e9ff70);
-    background-size: 400% 400%;
-    animation: gradientSky 16s ease infinite;
-    overflow-x: hidden;
     min-height: 100vh;
+    overflow-x: hidden;
     position: relative;
+    
+    /* รวมชั้นพื้นหลัง: เมฆ SVG + ดาวเกม SVG + พื้นหลังไล่สีพาสเทล */
+    background-color: #70d6ff;
+    background-image: 
+        /* เมฆลอยสไตล์เกม */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100' viewBox='0 0 200 100'%3E%3Cpath fill='%23ffffff' opacity='0.8' d='M 30,70 A 20,20 0 0,1 30,30 A 25,25 0 0,1 70,20 A 30,30 0 0,1 120,20 A 25,25 0 0,1 160,30 A 20,20 0 0,1 160,70 Z'/%3E%3C/svg%3E"),
+        /* ดาวยอดฮิตสไตล์เกม */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon points='60,10 75,45 110,45 82,65 93,100 60,78 27,100 38,65 10,45 45,45' fill='%23FFCC00' opacity='0.65'/%3E%3C/svg%3E"),
+        /* พื้นหลังไล่สีพาสเทล */
+        linear-gradient(-45deg, #70d6ff, #ff70a6, #ffd670, #a1fcdf);
+    
+    background-size: 350px 180px, 150px 150px, 400% 400%;
+    background-position: 0px 40px, 0px 0px, 0% 50%;
+    animation: gameBgMove 25s linear infinite;
 }
 
-/* เลเยอร์ไอคอนเกมและเมฆลอย */
-.game-bg-elements {
+/* ลายจุด Comic เพิ่มความน่ารักทับอีกชั้น */
+body::before {
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* เพื่อให้คลิกผ่านไปยังปุ่มต่างๆ บนหน้าเว็บได้ */
-    z-index: 0;
-    overflow: hidden;
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.4) 15%, transparent 16%),
+        radial-gradient(rgba(255, 204, 0, 0.25) 12%, transparent 13%);
+    background-size: 35px 35px, 70px 70px;
+    background-position: 0 0, 20px 20px;
+    z-index: -1;
+    pointer-events: none;
 }
 
-/* พระอาทิตย์ดุ๊กดิ๊ก */
-.sun {
-    position: absolute;
-    top: 50px;
-    right: 80px;
-    font-size: 4rem;
-    animation: rotateSun 20s linear infinite;
-    filter: drop-shadow(3px 3px 0px #222);
+/* แอนิเมชันให้เมฆ ดาว และสีท้องฟ้าเคลื่อนที่เหมือนเกม side-scroller */
+@keyframes gameBgMove {
+    0% {
+        background-position: 0px 40px, 0px 0px, 0% 50%;
+    }
+    50% {
+        background-position: 700px 80px, -350px 350px, 100% 50%;
+    }
+    100% {
+        background-position: 1400px 40px, -700px 700px, 0% 50%;
+    }
 }
 
-/* เมฆลอยผ่านหน้าจอ (Cloud Drift) */
-.cloud {
-    position: absolute;
-    color: rgba(255, 255, 255, 0.85);
-    filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.15));
-}
-.cloud-1 {
-    top: 10%;
-    font-size: 5rem;
-    animation: moveCloud 25s linear infinite;
-}
-.cloud-2 {
-    top: 35%;
-    font-size: 3.5rem;
-    animation: moveCloud 18s linear infinite 5s;
-}
-.cloud-3 {
-    top: 65%;
-    font-size: 4.5rem;
-    animation: moveCloud 30s linear infinite 2s;
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* ไอคอนน่ารักๆ ลอยขึ้นลง (Floating Items) */
-.float-item {
-    position: absolute;
-    font-size: 2.8rem;
-    filter: drop-shadow(3px 3px 0px var(--border-color));
-    animation: floatGameItem 3s ease-in-out infinite alternate;
-}
-
-.item-1 { top: 15%; left: 8%;  animation-delay: 0s; }
-.item-2 { top: 25%; left: 85%; animation-delay: 0.5s; }
-.item-3 { top: 55%; left: 5%;  animation-delay: 1s; }
-.item-4 { top: 75%; left: 88%; animation-delay: 1.5s; }
-.item-5 { top: 82%; left: 15%; animation-delay: 0.8s; }
-.item-6 { top: 40%; left: 92%; animation-delay: 0.3s; }
-.item-7 { top: 70%; left: 45%; animation-delay: 1.2s; }
-.item-8 { top: 18%; left: 48%; animation-delay: 0.7s; }
-
-/* ================= 📍 Keyframe Animations ================= */
-@keyframes gradientSky {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes moveCloud {
-    from { transform: translateX(-150px); }
-    to { transform: translateX(100vw); }
-}
-
-@keyframes floatGameItem {
-    0% { transform: translateY(0px) rotate(-5deg) scale(1); }
-    100% { transform: translateY(-20px) rotate(8deg) scale(1.1); }
-}
-
-@keyframes rotateSun {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* ================= 🧭 Navbar ================= */
+/* ================= Navbar ================= */
 nav {
     background-color: var(--white);
     border-bottom: var(--border-width) solid var(--border-color);
@@ -163,20 +127,71 @@ nav {
     transform: translateY(-2px);
 }
 
-/* ================= 🖼️ Main Layout & Hero ================= */
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
-    z-index: 1; /* ทำให้อยู่ทับบนพื้นหลัง */
+/* ================= UI Elements (Comic Style) ================= */
+.comic-card {
+    background: var(--white);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow-solid);
+    transition: all 0.3s ease;
 }
 
+.comic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--dark-text);
+    background-color: var(--primary-yellow);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 15px;
+    box-shadow: var(--shadow-solid);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--primary-red);
+    color: var(--white);
+}
+
+.btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ================= Sections & Layouts ================= */
 section {
     padding: 60px 0;
     animation: slideUp 0.8s ease-out;
 }
 
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--white);
+    text-shadow: 3px 3px 0 var(--border-color);
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-red);
+    padding: 5px 20px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 15px;
+    box-shadow: var(--shadow-solid);
+    transform: translateX(-50%) rotate(-2deg);
+}
+
+/* Hero Section */
 .hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -201,20 +216,13 @@ section {
 .hero-content p {
     font-size: 1.2rem;
     background: rgba(255, 255, 255, 0.95);
-    padding: 20px;
-    border-radius: 20px;
-    border: var(--border-width) solid var(--border-color);
-    box-shadow: var(--shadow-solid);
+    padding: 18px;
+    border-radius: 18px;
+    border: 3px solid var(--border-color);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
     margin-bottom: 30px;
     font-weight: 600;
     color: var(--dark-text);
-    line-height: 1.6;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
 }
 
 .hero-image-container {
@@ -224,50 +232,125 @@ section {
 
 .hero-image {
     width: 100%;
-    max-width: 380px;
+    max-width: 400px;
     background: var(--primary-yellow);
     border: var(--border-width) solid var(--border-color);
     border-radius: 50%;
-    padding: 15px;
+    padding: 20px;
     box-shadow: var(--shadow-solid);
-    animation: floatHero 3s ease-in-out infinite alternate;
+    animation: float 3s ease-in-out infinite alternate;
 }
 
-/* ================= 🔘 UI Buttons ================= */
-.btn {
-    display: inline-block;
-    padding: 12px 25px;
+/* Profile Grid */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+.info-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.info-list li {
+    margin-bottom: 15px;
     font-size: 1.1rem;
-    font-weight: 700;
-    text-decoration: none;
-    color: var(--dark-text);
+    font-weight: 600;
+    border-bottom: 2px dashed #ccc;
+    padding-bottom: 5px;
+}
+
+.info-list span {
+    color: var(--primary-red);
+}
+
+/* Timeline (Education) */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: var(--border-color);
+    top: 0;
+    bottom: 0;
+    left: 50px;
+    margin-left: -3px;
+    border-radius: 10px;
+}
+
+.timeline-item {
+    padding: 20px 30px 20px 100px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: auto;
+    left: 38px;
     background-color: var(--primary-yellow);
+    border: 4px solid var(--border-color);
+    top: 25px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Hobby Grid */
+.hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.hobby-card {
+    text-align: center;
+    background: var(--white);
     border: var(--border-width) solid var(--border-color);
-    border-radius: 15px;
+    border-radius: 20px;
+    padding: 30px;
     box-shadow: var(--shadow-solid);
-    transition: all 0.2s ease;
-    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.btn-primary {
-    background-color: var(--primary-red);
-    color: var(--white);
+.hobby-card:hover {
+    transform: scale(1.05) rotate(2deg);
+    background-color: #FFF9E6;
 }
 
-.btn:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: var(--shadow-hover);
+.hobby-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
 }
 
-/* ================= 🦶 Footer ================= */
+/* Contact Grid */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.contact-card {
+    text-align: center;
+    background: var(--white);
+}
+
+/* Footer */
 footer {
     background-color: var(--border-color);
     color: var(--white);
     text-align: center;
-    padding: 25px 20px;
+    padding: 30px 20px;
     margin-top: 50px;
-    position: relative;
-    z-index: 1;
 }
 
 /* Animations */
@@ -276,26 +359,35 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes floatHero {
+@keyframes float {
     0% { transform: translateY(0px) rotate(0deg); }
-    100% { transform: translateY(-15px) rotate(3deg); }
+    100% { transform: translateY(-20px) rotate(3deg); }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .hero {
+    .nav-links {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hero, .profile-grid {
         grid-template-columns: 1fr;
         text-align: center;
     }
     .hero-content h1 {
         font-size: 2.5rem;
     }
-    .hero-buttons {
-        justify-content: center;
+    .timeline::after {
+        left: 31px;
     }
-    .sun {
-        font-size: 3rem;
-        top: 20px;
-        right: 20px;
+    .timeline-item {
+        padding: 20px 20px 20px 70px;
+    }
+    .timeline-item::after {
+        left: 15px;
+    }
+    .section-title {
+        font-size: 2rem;
     }
 }
