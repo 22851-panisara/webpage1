@@ -1,46 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Kanit:wght@300;400;600;700&display=swap');
 
 :root {
-    --primary-red: #FF3B30;
-    --primary-yellow: #FFCC00;
-    --sky-blue: #87CEEB;
-    --dark-text: #222222;
-    --white: #FFFFFF;
+    --primary-red: #FF5252;
+    --primary-yellow: #FFCA28;
+    --grass-green: #90DC75;
+    --path-cream: #F3E3CE;
+    --water-blue: #4FC3F7;
+    --dark-text: #2C3E50;
     --border-color: #222222;
     --border-width: 4px;
     --shadow-solid: 6px 6px 0px var(--border-color);
     --shadow-hover: 10px 10px 0px var(--border-color);
+    --white: #FFFFFF;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Kanit', sans-serif;
+    font-family: 'Mali', 'Kanit', sans-serif;
+    scroll-behavior: smooth;
 }
 
-/* ================= 🎮 พื้นหลังเกมเคลื่อนไหวแบบ Pure CSS (ไม่ต้องแก้ HTML) ================= */
+/* ================= 🐾 พื้นหลังหมู่บ้านแมวเหมียวเคลื่อนไหว (Cats Village Style) ================= */
 body {
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    color: var(--dark-text);
     
-    /* รวมชั้นพื้นหลัง: เมฆ SVG + ดาวเกม SVG + พื้นหลังไล่สีพาสเทล */
-    background-color: #70d6ff;
+    /* ถอดโทนสีตรงจากภาพเกม: หญ้าเขียวสดใส (#90DC75) -> ทางเดินหิน (#F3E3CE) -> สายน้ำฟ้า (#4FC3F7) */
+    background-color: #90DC75;
     background-image: 
-        /* เมฆลอยสไตล์เกม */
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100' viewBox='0 0 200 100'%3E%3Cpath fill='%23ffffff' opacity='0.8' d='M 30,70 A 20,20 0 0,1 30,30 A 25,25 0 0,1 70,20 A 30,30 0 0,1 120,20 A 25,25 0 0,1 160,30 A 20,20 0 0,1 160,70 Z'/%3E%3C/svg%3E"),
-        /* ดาวยอดฮิตสไตล์เกม */
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon points='60,10 75,45 110,45 82,65 93,100 60,78 27,100 38,65 10,45 45,45' fill='%23FFCC00' opacity='0.65'/%3E%3C/svg%3E"),
-        /* พื้นหลังไล่สีพาสเทล */
-        linear-gradient(-45deg, #70d6ff, #ff70a6, #ffd670, #a1fcdf);
+        /* ลายรอยเท้าแมวเหมียว 🐾 */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'%3E%3Cpath fill='%236BB05D' opacity='0.45' d='M30,30 Q25,20 20,25 Q15,30 25,35 Z M45,25 Q45,15 35,15 Q30,20 38,30 Z M60,30 Q65,20 70,25 Q75,30 65,35 Z M40,45 Q25,35 25,50 Q25,65 40,60 Q55,65 55,50 Q55,35 40,45 Z'/%3E%3C/svg%3E"),
+        /* ต้นไม้และกล่องพัสดุการ์ตูน */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 200 200'%3E%3Ccircle cx='50' cy='50' r='24' fill='%234CAF50' opacity='0.35'/%3E%3Crect x='130' y='130' width='28' height='28' fill='%23E0A96D' rx='5' opacity='0.4'/%3E%3C/svg%3E"),
+        /* ไล่สีพื้นหลังตามฉากในเกม */
+        linear-gradient(180deg, #90DC75 0%, #7BCB60 40%, #F3E3CE 70%, #4FC3F7 100%);
     
-    background-size: 350px 180px, 150px 150px, 400% 400%;
-    background-position: 0px 40px, 0px 0px, 0% 50%;
-    animation: gameBgMove 25s linear infinite;
+    background-size: 140px 140px, 220px 220px, 100% 200%;
+    animation: catVillageMove 20s linear infinite;
 }
 
-/* ลายจุด Comic เพิ่มความน่ารักทับอีกชั้น */
+/* จุดกลมวิ้งๆ ลอยเคลื่อนไหวทับด้านบน */
 body::before {
     content: "";
     position: fixed;
@@ -49,54 +52,59 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(rgba(255, 255, 255, 0.4) 15%, transparent 16%),
-        radial-gradient(rgba(255, 204, 0, 0.25) 12%, transparent 13%);
-    background-size: 35px 35px, 70px 70px;
-    background-position: 0 0, 20px 20px;
+        radial-gradient(rgba(255, 255, 255, 0.5) 15%, transparent 16%),
+        radial-gradient(rgba(255, 202, 40, 0.35) 12%, transparent 13%);
+    background-size: 45px 45px, 90px 90px;
+    background-position: 0 0, 22px 22px;
     z-index: -1;
     pointer-events: none;
+    animation: floatDots 10s ease-in-out infinite alternate;
 }
 
-/* แอนิเมชันให้เมฆ ดาว และสีท้องฟ้าเคลื่อนที่เหมือนเกม side-scroller */
-@keyframes gameBgMove {
+/* ================= 📍 Keyframe Animations ================= */
+@keyframes catVillageMove {
     0% {
-        background-position: 0px 40px, 0px 0px, 0% 50%;
+        background-position: 0px 0px, 0px 0px, 50% 0%;
     }
     50% {
-        background-position: 700px 80px, -350px 350px, 100% 50%;
+        background-position: 140px 140px, -110px 110px, 50% 50%;
     }
     100% {
-        background-position: 1400px 40px, -700px 700px, 0% 50%;
+        background-position: 280px 280px, -220px 220px, 50% 0%;
     }
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+@keyframes floatDots {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-15px); }
 }
 
-/* ================= Navbar ================= */
+@keyframes heroAvatarFloat {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-15px) rotate(3deg); }
+}
+
+/* ================= 🧭 Navbar ================= */
 nav {
     background-color: var(--white);
     border-bottom: var(--border-width) solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.15);
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    padding: 12px 20px;
     max-width: 1100px;
     margin: 0 auto;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--primary-red);
     text-decoration: none;
@@ -107,7 +115,7 @@ nav {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 15px;
 }
 
 .nav-links a {
@@ -117,7 +125,7 @@ nav {
     padding: 8px 16px;
     border-radius: 12px;
     border: 2px solid transparent;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
 }
 
 .nav-links a:hover, .nav-links a.active {
@@ -127,81 +135,59 @@ nav {
     transform: translateY(-2px);
 }
 
-/* ================= UI Elements (Comic Style) ================= */
-.comic-card {
-    background: var(--white);
-    border: var(--border-width) solid var(--border-color);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: var(--shadow-solid);
-    transition: all 0.3s ease;
+/* ================= 🖼️ Layout & Containers ================= */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
 }
 
-.comic-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 25px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-decoration: none;
-    color: var(--dark-text);
-    background-color: var(--primary-yellow);
-    border: var(--border-width) solid var(--border-color);
-    border-radius: 15px;
-    box-shadow: var(--shadow-solid);
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background-color: var(--primary-red);
-    color: var(--white);
-}
-
-.btn:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: var(--shadow-hover);
-}
-
-/* ================= Sections & Layouts ================= */
 section {
-    padding: 60px 0;
-    animation: slideUp 0.8s ease-out;
+    padding: 70px 0 30px 0;
 }
 
 .section-title {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--white);
     text-shadow: 3px 3px 0 var(--border-color);
     margin-bottom: 40px;
-    position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
     background: var(--primary-red);
-    padding: 5px 20px;
+    padding: 8px 25px;
     border: var(--border-width) solid var(--border-color);
-    border-radius: 15px;
+    border-radius: 20px;
     box-shadow: var(--shadow-solid);
+    display: inline-block;
+    position: relative;
+    left: 50%;
     transform: translateX(-50%) rotate(-2deg);
 }
 
-/* Hero Section */
+/* ================= 🦸 Hero Section ================= */
 .hero {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 0.8fr;
     gap: 40px;
     align-items: center;
-    min-height: 80vh;
+    min-height: 85vh;
+}
+
+.badge {
+    display: inline-block;
+    background: var(--primary-yellow);
+    border: 2px solid var(--border-color);
+    padding: 4px 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 2px 2px 0 var(--border-color);
+    margin-bottom: 12px;
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     color: var(--white);
     text-shadow: 
         -3px -3px 0 var(--border-color),
@@ -214,111 +200,125 @@ section {
 }
 
 .hero-content p {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     background: rgba(255, 255, 255, 0.95);
-    padding: 18px;
-    border-radius: 18px;
-    border: 3px solid var(--border-color);
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
-    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 20px;
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--shadow-solid);
+    margin-bottom: 25px;
     font-weight: 600;
-    color: var(--dark-text);
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .hero-image-container {
-    position: relative;
     text-align: center;
 }
 
-.hero-image {
-    width: 100%;
-    max-width: 400px;
+.avatar-frame {
+    display: inline-block;
     background: var(--primary-yellow);
     border: var(--border-width) solid var(--border-color);
     border-radius: 50%;
-    padding: 20px;
+    padding: 15px;
     box-shadow: var(--shadow-solid);
-    animation: float 3s ease-in-out infinite alternate;
+    animation: heroAvatarFloat 3s ease-in-out infinite alternate;
 }
+
+.hero-image {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--border-color);
+    background-color: #FFF;
+}
+
+/* ================= 🃏 Comic Cards ================= */
+.comic-card {
+    background: var(--white);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: var(--shadow-solid);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.comic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.profile-avatar {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-weight: 600;
+}
+
+.text-center { text-align: center; }
 
 /* Profile Grid */
 .profile-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 30px;
+    gap: 25px;
 }
 
 .info-list {
     list-style: none;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .info-list li {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-bottom: 2px dashed #ccc;
-    padding-bottom: 5px;
+    padding: 10px 0;
+    font-size: 1.05rem;
+    border-bottom: 2px dashed #E0E0E0;
 }
 
-.info-list span {
-    color: var(--primary-red);
+.info-list li:last-child {
+    border-bottom: none;
 }
 
 /* Timeline (Education) */
 .timeline {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     max-width: 800px;
     margin: 0 auto;
 }
 
-.timeline::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    background-color: var(--border-color);
-    top: 0;
-    bottom: 0;
-    left: 50px;
-    margin-left: -3px;
-    border-radius: 10px;
-}
-
-.timeline-item {
-    padding: 20px 30px 20px 100px;
-    position: relative;
-    margin-bottom: 30px;
-}
-
-.timeline-item::after {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    right: auto;
-    left: 38px;
-    background-color: var(--primary-yellow);
-    border: 4px solid var(--border-color);
-    top: 25px;
-    border-radius: 50%;
-    z-index: 1;
+.school-name {
+    color: var(--primary-red);
+    font-weight: 700;
+    margin: 5px 0 10px 0;
 }
 
 /* Hobby Grid */
 .hobby-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 .hobby-card {
-    text-align: center;
     background: var(--white);
     border: var(--border-width) solid var(--border-color);
     border-radius: 20px;
-    padding: 30px;
+    padding: 25px;
+    text-align: center;
     box-shadow: var(--shadow-solid);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .hobby-card:hover {
@@ -327,47 +327,66 @@ section {
 }
 
 .hobby-icon {
-    font-size: 4rem;
-    margin-bottom: 15px;
+    font-size: 3.5rem;
+    margin-bottom: 10px;
 }
 
 /* Contact Grid */
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
 }
 
 .contact-card {
     text-align: center;
-    background: var(--white);
 }
 
-/* Footer */
+.contact-icon {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+/* ================= 🔘 Buttons ================= */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--dark-text);
+    background-color: var(--primary-yellow);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: var(--shadow-solid);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--primary-red);
+    color: var(--white);
+}
+
+.btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ================= 🦶 Footer ================= */
 footer {
     background-color: var(--border-color);
     color: var(--white);
     text-align: center;
-    padding: 30px 20px;
-    margin-top: 50px;
+    padding: 25px 20px;
+    margin-top: 60px;
+    font-weight: 600;
 }
 
-/* Animations */
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes float {
-    0% { transform: translateY(0px) rotate(0deg); }
-    100% { transform: translateY(-20px) rotate(3deg); }
-}
-
-/* Responsive Design */
+/* ================= 📱 Responsive ================= */
 @media (max-width: 768px) {
     .nav-links {
-        gap: 10px;
+        gap: 8px;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -376,18 +395,16 @@ footer {
         text-align: center;
     }
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
     }
-    .timeline::after {
-        left: 31px;
+    .hero-buttons {
+        justify-content: center;
     }
-    .timeline-item {
-        padding: 20px 20px 20px 70px;
-    }
-    .timeline-item::after {
-        left: 15px;
+    .hero-image {
+        width: 220px;
+        height: 220px;
     }
     .section-title {
-        font-size: 2rem;
+        font-size: 1.7rem;
     }
 }
