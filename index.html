@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>หน้าแรก | Portfolio ของพอมแพม 🐾</title>
-    <link rel="stylesheet" href="style.css?v=kawaii_v1">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ================= 🎈 ฉากไอคอนน่ารักลอยเคลื่อนไหว ================= -->
+    <!-- ไอคอนน่ารักลอยพื้นหลัง -->
     <div class="bg-decorations">
         <span class="decor-item item1">🐾</span>
         <span class="decor-item item2">⭐</span>
@@ -18,36 +18,33 @@
         <span class="decor-item item6">☁️</span>
         <span class="decor-item item7">🐟</span>
         <span class="decor-item item8">✨</span>
-        <span class="decor-item item9">🐱</span>
     </div>
 
-    <!-- ================= 🧭 Navbar สไตล์เกม ================= -->
+    <!-- Navbar -->
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">🐾 CAT TOWN PORT.</a>
             <ul class="nav-links">
-                <li><a href="#home" class="active">หน้าแรก</a></li>
-                <li><a href="#profile">ประวัติส่วนตัว</a></li>
-                <li><a href="#education">การศึกษา</a></li>
-                <li><a href="#hobby">งานอดิเรก</a></li>
-                <li><a href="#contact">ติดต่อ</a></li>
+                <li><a href="index.html" class="active">หน้าแรก</a></li>
+                <li><a href="profile.html">ประวัติส่วนตัว</a></li>
+                <li><a href="education.html">การศึกษา</a></li>
+                <li><a href="hobby.html">งานอดิเรก</a></li>
+                <li><a href="contact.html">ติดต่อ</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- ================= 🌟 Main Container ================= -->
-    <main class="container">
-        
-        <!-- Hero Section (หน้าแรก) -->
-        <section id="home" class="hero">
+    <!-- Content -->
+    <main class="container page-content">
+        <section class="hero">
             <div class="hero-content">
                 <div class="badge">🐱 WELCOME TO MY VILLAGE</div>
                 <h1>สวัสดีค่ะ! <br>ฉันชื่อ พอมแพม 🐾</h1>
                 <p>ยินดีต้อนรับสู่ Portfolio ของฉัน นักเรียนชั้นมัธยมศึกษาปีที่ 3/2 ที่มีความสนใจในด้านคอมพิวเตอร์และการออกแบบเว็บไซต์ เชิญเข้าชมผลงานและทำความรู้จักกับฉันได้เลยค่ะ!</p>
                 
                 <div class="hero-buttons">
-                    <a href="#profile" class="btn btn-primary">รู้จักฉันมากขึ้น ✨</a>
-                    <a href="#hobby" class="btn">งานอดิเรก 🎮</a>
+                    <a href="profile.html" class="btn btn-primary">รู้จักฉันมากขึ้น ✨</a>
+                    <a href="hobby.html" class="btn">งานอดิเรก 🎮</a>
                 </div>
             </div>
             
@@ -57,93 +54,8 @@
                 </div>
             </div>
         </section>
-
-        <!-- Profile Section (ประวัติส่วนตัว) -->
-        <section id="profile">
-            <h2 class="section-title">🐾 ประวัติส่วนตัว</h2>
-            <div class="profile-grid">
-                <div class="comic-card text-center">
-                    <div class="profile-avatar">👧🏻</div>
-                    <h3>ด.ญ.ปาณิสรา ทาดวงแดน</h3>
-                    <p class="subtitle">ชื่อเล่น: พอมแพม</p>
-                </div>
-                <div class="comic-card">
-                    <h3>ข้อมูลทั่วไป 📌</h3>
-                    <ul class="info-list">
-                        <li><strong>ชื่อ-นามสกุล:</strong> ด.ญ.ปาณิสรา ทาดวงแดน</li>
-                        <li><strong>ระดับชั้น:</strong> มัธยมศึกษาปีที่ 3/2</li>
-                        <li><strong>วิชาที่ชอบ:</strong> คอมพิวเตอร์, ศิลปะ, ภาษาอังกฤษ</li>
-                        <li><strong>ความสามารถพิเศษ:</strong> วาดรูปดิจิทัล, ออกแบบเว็บไซต์</li>
-                        <li><strong>คติประจำใจ:</strong> "พยายามทำทุกวันให้มีความสุขเหมือนน้องแมว!"</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section (การศึกษา) -->
-        <section id="education">
-            <h2 class="section-title">🎓 ประวัติการศึกษา</h2>
-            <div class="timeline">
-                <div class="timeline-item comic-card">
-                    <h3>ระดับชั้นมัธยมศึกษาตอนต้น</h3>
-                    <p class="school-name">🏫 โรงเรียนปัจจุบัน</p>
-                    <p>กำลังศึกษาระดับชั้นมัธยมศึกษาปีที่ 3/2 (แผนการเรียนเทคโนโลยี-คอมพิวเตอร์)</p>
-                </div>
-                <div class="timeline-item comic-card">
-                    <h3>ระดับชั้นประถมศึกษา</h3>
-                    <p class="school-name">🏫 โรงเรียนประถมศึกษา</p>
-                    <p>สำเร็จการศึกษาระดับชั้นประถมศึกษาปีที่ 6 ด้วยผลการเรียนดีเยี่ยม</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Hobby Section (งานอดิเรก) -->
-        <section id="hobby">
-            <h2 class="section-title">🎮 งานอดิเรก & ความสนใจ</h2>
-            <div class="hobby-grid">
-                <div class="hobby-card">
-                    <div class="hobby-icon">🎨</div>
-                    <h3>วาดรูป & กราฟิก</h3>
-                    <p>ชอบวาดภาพตัวการ์ตูนน่ารักๆ และออกแบบลายเส้นสไตล์การ์ตูน</p>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🎮</div>
-                    <h3>เล่นเกมส์</h3>
-                    <p>ชอบเล่นเกมแนวผ่อนคลาย สร้างเมือง และเกมบริหารร้านแมวเหมียว</p>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">💻</div>
-                    <h3>เขียนโค้ดเว็บ</h3>
-                    <p>ฝึกฝนการเขียน HTML & CSS ตกแต่งเว็บไซต์ให้น่ารักและใช้งานง่าย</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section (ช่องทางติดต่อ) -->
-        <section id="contact">
-            <h2 class="section-title">📬 ช่องทางการติดต่อ</h2>
-            <div class="contact-grid">
-                <div class="contact-card comic-card">
-                    <div class="contact-icon">📧</div>
-                    <h3>Email</h3>
-                    <p>pompam@example.com</p>
-                </div>
-                <div class="contact-card comic-card">
-                    <div class="contact-icon">📱</div>
-                    <h3>Facebook / Line</h3>
-                    <p>Panisara Thaduangdaen</p>
-                </div>
-                <div class="contact-card comic-card">
-                    <div class="contact-icon">📍</div>
-                    <h3>Address</h3>
-                    <p>ชั้น ม.3/2 ห้องเรียนเทคโนโลยี</p>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- ================= 🦶 Footer ================= -->
     <footer>
         <p>© 2026 ด.ญ.ปาณิสรา ทาดวงแดน | ชั้นมัธยมศึกษาปีที่ 3/2 🐾</p>
     </footer>
