@@ -3,9 +3,6 @@
 :root {
     --primary-red: #FF5252;
     --primary-yellow: #FFCA28;
-    --grass-green: #90DC75;
-    --path-cream: #F3E3CE;
-    --water-blue: #4FC3F7;
     --dark-text: #2C3E50;
     --border-color: #222222;
     --border-width: 4px;
@@ -22,28 +19,20 @@
     scroll-behavior: smooth;
 }
 
-/* ================= 🐾 พื้นหลังหมู่บ้านแมวเหมียวเคลื่อนไหว (Cats Village Style) ================= */
+/* ================= 🌈 พื้นหลังพาสเทลเคลื่อนไหวสไตล์ Kawaii Game ================= */
 body {
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
     color: var(--dark-text);
     
-    /* ถอดโทนสีตรงจากภาพเกม: หญ้าเขียวสดใส (#90DC75) -> ทางเดินหิน (#F3E3CE) -> สายน้ำฟ้า (#4FC3F7) */
-    background-color: #90DC75;
-    background-image: 
-        /* ลายรอยเท้าแมวเหมียว 🐾 */
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'%3E%3Cpath fill='%236BB05D' opacity='0.45' d='M30,30 Q25,20 20,25 Q15,30 25,35 Z M45,25 Q45,15 35,15 Q30,20 38,30 Z M60,30 Q65,20 70,25 Q75,30 65,35 Z M40,45 Q25,35 25,50 Q25,65 40,60 Q55,65 55,50 Q55,35 40,45 Z'/%3E%3C/svg%3E"),
-        /* ต้นไม้และกล่องพัสดุการ์ตูน */
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 200 200'%3E%3Ccircle cx='50' cy='50' r='24' fill='%234CAF50' opacity='0.35'/%3E%3Crect x='130' y='130' width='28' height='28' fill='%23E0A96D' rx='5' opacity='0.4'/%3E%3C/svg%3E"),
-        /* ไล่สีพื้นหลังตามฉากในเกม */
-        linear-gradient(180deg, #90DC75 0%, #7BCB60 40%, #F3E3CE 70%, #4FC3F7 100%);
-    
-    background-size: 140px 140px, 220px 220px, 100% 200%;
-    animation: catVillageMove 20s linear infinite;
+    /* การไล่สีท้องฟ้าพาสเทล 4 สีที่หมุนเวียนนุ่มนวล */
+    background: linear-gradient(-45deg, #FFB7B2, #FFDAC1, #E2F0CB, #B5EAD7, #C7CEEA);
+    background-size: 400% 400%;
+    animation: kawaiiGradient 16s ease infinite;
 }
 
-/* จุดกลมวิ้งๆ ลอยเคลื่อนไหวทับด้านบน */
+/* ลายจุดน่ารักๆ ทับพื้นหลัง */
 body::before {
     content: "";
     position: fixed;
@@ -52,31 +41,53 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(rgba(255, 255, 255, 0.5) 15%, transparent 16%),
-        radial-gradient(rgba(255, 202, 40, 0.35) 12%, transparent 13%);
-    background-size: 45px 45px, 90px 90px;
-    background-position: 0 0, 22px 22px;
+        radial-gradient(rgba(255, 255, 255, 0.6) 18%, transparent 19%),
+        radial-gradient(rgba(255, 202, 40, 0.3) 14%, transparent 15%);
+    background-size: 40px 40px, 80px 80px;
+    background-position: 0 0, 20px 20px;
     z-index: -1;
     pointer-events: none;
-    animation: floatDots 10s ease-in-out infinite alternate;
 }
 
-/* ================= 📍 Keyframe Animations ================= */
-@keyframes catVillageMove {
-    0% {
-        background-position: 0px 0px, 0px 0px, 50% 0%;
-    }
-    50% {
-        background-position: 140px 140px, -110px 110px, 50% 50%;
-    }
-    100% {
-        background-position: 280px 280px, -220px 220px, 50% 0%;
-    }
+/* ================= 🎈 ไอคอนลอยเคลื่อนไหว (Floating Animations) ================= */
+.bg-decorations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
 }
 
-@keyframes floatDots {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-15px); }
+.decor-item {
+    position: absolute;
+    font-size: 2.5rem;
+    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.15));
+    animation: floatKawaii 4s ease-in-out infinite alternate;
+}
+
+.item1 { top: 12%; left: 6%;  animation-delay: 0s; }
+.item2 { top: 22%; left: 88%; animation-delay: 0.8s; }
+.item3 { top: 48%; left: 4%;  animation-delay: 1.5s; }
+.item4 { top: 72%; left: 92%; animation-delay: 0.3s; }
+.item5 { top: 85%; left: 12%; animation-delay: 2s; }
+.item6 { top: 18%; left: 50%; animation-delay: 1.1s; }
+.item7 { top: 60%; left: 85%; animation-delay: 2.4s; }
+.item8 { top: 38%; left: 94%; animation-delay: 0.5s; }
+.item9 { top: 80%; left: 48%; animation-delay: 1.7s; }
+
+/* Keyframes */
+@keyframes kawaiiGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatKawaii {
+    0% { transform: translateY(0px) rotate(-8deg) scale(1); }
+    100% { transform: translateY(-22px) rotate(8deg) scale(1.12); }
 }
 
 @keyframes heroAvatarFloat {
@@ -91,7 +102,7 @@ nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
 }
 
 .nav-container {
